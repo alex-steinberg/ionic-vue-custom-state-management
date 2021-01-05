@@ -2,28 +2,29 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Ionic with Vuex example</ion-title>
       </ion-toolbar>
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <ion-button expand="full" @click="fetchStarships">Fetch starships</ion-button>
+        <p v-if="errorMessage" v-bind="errorMessage"></p>
+        <ion-list>
+          <ion-item v-for="item in ships" :key="item.created" :item="item">
+            Starship name: {{item.name}}
+          </ion-item>
+        </ion-list>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonList, IonItem } from '@ionic/vue';
+import { mapGetters } from 'vuex';
 import { defineComponent } from 'vue';
+import { Starship, SwapiResponse } from '../models/swapi.model';
 
 export default defineComponent({
   name: 'Home',
@@ -32,7 +33,30 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonButton,
+    IonList,
+    IonItem
+  },
+  data() {
+    return {
+      errorMessage: ''
+    }
+  },
+  methods: {
+    async fetchStarships() {
+      const res = await this.axios.get<SwapiResponse<Starship[]>>("https://swapi.dev/api/starships/");
+      if (res) {
+        this.$store.dispatch('starships/setStarships', res.data.results);
+      } else {
+        this.errorMessage = 'No starships found';
+      }
+    }
+  },
+  computed: {
+    ...mapGetters('starships', {
+      ships: 'getStarships'
+    })
   }
 });
 </script>
