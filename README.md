@@ -1,6 +1,8 @@
 # Ionic Vue starter with custom state management
 
-An [@ionic/vue](https://ionicframework.com/docs/vue/overview) starter app with a little more juice.
+A very Typescripty [@ionic/vue](https://ionicframework.com/docs/vue/overview) starter.
+
+Inspired by this [article](https://medium.com/@mario.brendel1990/vue-3-the-new-store-a7569d4a546f).
 
 ## Background
 
