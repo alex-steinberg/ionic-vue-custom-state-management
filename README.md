@@ -1,4 +1,4 @@
-# Ionic Vue starter with custom state management
+# Ionic Vue starter with Typescripty state management
 
 A very Typescripty [@ionic/vue](https://ionicframework.com/docs/vue/overview) starter.
 
