@@ -12,6 +12,8 @@ Vue 3 lays the foundation for bringing these same benefits to Vue developers, ho
 
 This starter app wires up a custom state management solution (thanks [Mario Brendel](https://github.com/Mario-Brendelhttps://github.com/Mario-Brendel) :wave:) and testing to provide a base for an Ionic Vue app with Typescript thoroughly baked in.
 
+The achilles heel of Vuex is that it uses strings to call state management functions, making it a nightmare to refactor and doing away with one of the main benefits of using Typescript in the first place.
+
 ## Installation
 
 You will need [Node](https://github.com/nvm-sh/nvm) and the [Ionic](https://ionicframework.com/docs/intro/cli) and [Vue](https://v3.vuejs.org/guide/installation.html#cli) CLIs. With Node installed, run:
